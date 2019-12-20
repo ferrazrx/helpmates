@@ -1,0 +1,15 @@
+# SELECT BASE IMAGE WITH NODE NPM
+FROM node:alpine
+
+# CREATE WORK DIRECTORY
+WORKDIR /usr/app
+
+# COPY DEFAULT FILES AND INSTALL DEPENDENCIES
+COPY ./package.json ./
+RUN npm i
+RUN npm i -g nodemon
+COPY . .
+
+# CREAT DEFAULT COMMAND
+CMD ["npm", "run", "prod"] 
+EXPOSE 4000

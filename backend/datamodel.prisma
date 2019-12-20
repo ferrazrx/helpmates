@@ -1,0 +1,96 @@
+enum Permission{
+  ADMIN
+  USER
+  SERVICECREATE
+  SERVICEUPDATE
+  SERVICEDELETE
+  PERMISSIONUPDATE
+}
+
+enum NotificationType{
+  BID
+  COMMENT
+}
+
+type User @model{
+  id: ID! @unique
+  fname: String!
+  lname: String!
+  address: Address!
+  email: String! @unique
+  password: String!
+  token: [Token]!
+  resetToken: String @unique
+  resetTokenExpiry: Float
+  permissions: [Permission]
+}
+
+type Address @model{
+  id: ID! @unique
+  line1: String!
+  line2: String
+  city: String!
+  province: Province!
+  zip: String!
+}
+
+type Token @model{
+  token: String!
+  type: String!
+}
+
+type Province @model{
+  id: ID! @unique
+  name: String!
+  abbr: String!
+}
+
+type Comment @model{
+  id: ID! @unique
+  question: String!
+  answers: [String]
+  author: User!
+  service: Service!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Service @model{
+  id: ID! @unique
+  title: String!
+  description: String!
+  maxPayment: Float!
+  category: Category!
+  images: [String]!
+  thumbnail: String
+  comments: [Comment]
+  author: User!
+  bids: [Bid]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Category @model{
+  id: ID! @unique
+  name: String!
+  number: Int!
+}
+
+type Bid @model{
+  id: ID! @unique
+  author: User!
+  service: Service!
+  payment: Float!
+  possibleDate: String!
+}
+
+type Notification @model{
+  id: ID! @unique
+  type: NotificationType!
+  to: User!
+  message: String!
+  label: String!
+  service: Service!
+  createdAt: DateTime!
+  viewedAt: DateTime
+}

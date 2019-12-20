@@ -1,0 +1,11 @@
+{
+  "workbench.colorCustomizations": {
+      "activityBar.background": "#00AA00"
+  },
+  // Set the default
+  "editor.formatOnSave": true,
+  // Enable per-language
+  "[javascript]": {
+      "editor.formatOnSave": true
+  }
+}

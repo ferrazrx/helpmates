@@ -1,0 +1,1981 @@
+type Address {
+  id: ID!
+  line1: String!
+  line2: String
+  city: String!
+  province: Province!
+  zip: String!
+}
+
+type AddressConnection {
+  pageInfo: PageInfo!
+  edges: [AddressEdge]!
+  aggregate: AggregateAddress!
+}
+
+input AddressCreateInput {
+  line1: String!
+  line2: String
+  city: String!
+  province: ProvinceCreateOneInput!
+  zip: String!
+}
+
+input AddressCreateOneInput {
+  create: AddressCreateInput
+  connect: AddressWhereUniqueInput
+}
+
+type AddressEdge {
+  node: Address!
+  cursor: String!
+}
+
+enum AddressOrderByInput {
+  id_ASC
+  id_DESC
+  line1_ASC
+  line1_DESC
+  line2_ASC
+  line2_DESC
+  city_ASC
+  city_DESC
+  zip_ASC
+  zip_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type AddressPreviousValues {
+  id: ID!
+  line1: String!
+  line2: String
+  city: String!
+  zip: String!
+}
+
+type AddressSubscriptionPayload {
+  mutation: MutationType!
+  node: Address
+  updatedFields: [String!]
+  previousValues: AddressPreviousValues
+}
+
+input AddressSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AddressWhereInput
+  AND: [AddressSubscriptionWhereInput!]
+  OR: [AddressSubscriptionWhereInput!]
+  NOT: [AddressSubscriptionWhereInput!]
+}
+
+input AddressUpdateDataInput {
+  line1: String
+  line2: String
+  city: String
+  province: ProvinceUpdateOneRequiredInput
+  zip: String
+}
+
+input AddressUpdateInput {
+  line1: String
+  line2: String
+  city: String
+  province: ProvinceUpdateOneRequiredInput
+  zip: String
+}
+
+input AddressUpdateManyMutationInput {
+  line1: String
+  line2: String
+  city: String
+  zip: String
+}
+
+input AddressUpdateOneRequiredInput {
+  create: AddressCreateInput
+  update: AddressUpdateDataInput
+  upsert: AddressUpsertNestedInput
+  connect: AddressWhereUniqueInput
+}
+
+input AddressUpsertNestedInput {
+  update: AddressUpdateDataInput!
+  create: AddressCreateInput!
+}
+
+input AddressWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  line1: String
+  line1_not: String
+  line1_in: [String!]
+  line1_not_in: [String!]
+  line1_lt: String
+  line1_lte: String
+  line1_gt: String
+  line1_gte: String
+  line1_contains: String
+  line1_not_contains: String
+  line1_starts_with: String
+  line1_not_starts_with: String
+  line1_ends_with: String
+  line1_not_ends_with: String
+  line2: String
+  line2_not: String
+  line2_in: [String!]
+  line2_not_in: [String!]
+  line2_lt: String
+  line2_lte: String
+  line2_gt: String
+  line2_gte: String
+  line2_contains: String
+  line2_not_contains: String
+  line2_starts_with: String
+  line2_not_starts_with: String
+  line2_ends_with: String
+  line2_not_ends_with: String
+  city: String
+  city_not: String
+  city_in: [String!]
+  city_not_in: [String!]
+  city_lt: String
+  city_lte: String
+  city_gt: String
+  city_gte: String
+  city_contains: String
+  city_not_contains: String
+  city_starts_with: String
+  city_not_starts_with: String
+  city_ends_with: String
+  city_not_ends_with: String
+  province: ProvinceWhereInput
+  zip: String
+  zip_not: String
+  zip_in: [String!]
+  zip_not_in: [String!]
+  zip_lt: String
+  zip_lte: String
+  zip_gt: String
+  zip_gte: String
+  zip_contains: String
+  zip_not_contains: String
+  zip_starts_with: String
+  zip_not_starts_with: String
+  zip_ends_with: String
+  zip_not_ends_with: String
+  AND: [AddressWhereInput!]
+  OR: [AddressWhereInput!]
+  NOT: [AddressWhereInput!]
+}
+
+input AddressWhereUniqueInput {
+  id: ID
+}
+
+type AggregateAddress {
+  count: Int!
+}
+
+type AggregateBid {
+  count: Int!
+}
+
+type AggregateCategory {
+  count: Int!
+}
+
+type AggregateComment {
+  count: Int!
+}
+
+type AggregateNotification {
+  count: Int!
+}
+
+type AggregateProvince {
+  count: Int!
+}
+
+type AggregateService {
+  count: Int!
+}
+
+type AggregateToken {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+type Bid {
+  id: ID!
+  author: User!
+  service: Service!
+  payment: Float!
+  possibleDate: String!
+}
+
+type BidConnection {
+  pageInfo: PageInfo!
+  edges: [BidEdge]!
+  aggregate: AggregateBid!
+}
+
+input BidCreateInput {
+  author: UserCreateOneInput!
+  service: ServiceCreateOneWithoutBidsInput!
+  payment: Float!
+  possibleDate: String!
+}
+
+input BidCreateManyWithoutServiceInput {
+  create: [BidCreateWithoutServiceInput!]
+  connect: [BidWhereUniqueInput!]
+}
+
+input BidCreateWithoutServiceInput {
+  author: UserCreateOneInput!
+  payment: Float!
+  possibleDate: String!
+}
+
+type BidEdge {
+  node: Bid!
+  cursor: String!
+}
+
+enum BidOrderByInput {
+  id_ASC
+  id_DESC
+  payment_ASC
+  payment_DESC
+  possibleDate_ASC
+  possibleDate_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type BidPreviousValues {
+  id: ID!
+  payment: Float!
+  possibleDate: String!
+}
+
+input BidScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  payment: Float
+  payment_not: Float
+  payment_in: [Float!]
+  payment_not_in: [Float!]
+  payment_lt: Float
+  payment_lte: Float
+  payment_gt: Float
+  payment_gte: Float
+  possibleDate: String
+  possibleDate_not: String
+  possibleDate_in: [String!]
+  possibleDate_not_in: [String!]
+  possibleDate_lt: String
+  possibleDate_lte: String
+  possibleDate_gt: String
+  possibleDate_gte: String
+  possibleDate_contains: String
+  possibleDate_not_contains: String
+  possibleDate_starts_with: String
+  possibleDate_not_starts_with: String
+  possibleDate_ends_with: String
+  possibleDate_not_ends_with: String
+  AND: [BidScalarWhereInput!]
+  OR: [BidScalarWhereInput!]
+  NOT: [BidScalarWhereInput!]
+}
+
+type BidSubscriptionPayload {
+  mutation: MutationType!
+  node: Bid
+  updatedFields: [String!]
+  previousValues: BidPreviousValues
+}
+
+input BidSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: BidWhereInput
+  AND: [BidSubscriptionWhereInput!]
+  OR: [BidSubscriptionWhereInput!]
+  NOT: [BidSubscriptionWhereInput!]
+}
+
+input BidUpdateInput {
+  author: UserUpdateOneRequiredInput
+  service: ServiceUpdateOneRequiredWithoutBidsInput
+  payment: Float
+  possibleDate: String
+}
+
+input BidUpdateManyDataInput {
+  payment: Float
+  possibleDate: String
+}
+
+input BidUpdateManyMutationInput {
+  payment: Float
+  possibleDate: String
+}
+
+input BidUpdateManyWithoutServiceInput {
+  create: [BidCreateWithoutServiceInput!]
+  delete: [BidWhereUniqueInput!]
+  connect: [BidWhereUniqueInput!]
+  disconnect: [BidWhereUniqueInput!]
+  update: [BidUpdateWithWhereUniqueWithoutServiceInput!]
+  upsert: [BidUpsertWithWhereUniqueWithoutServiceInput!]
+  deleteMany: [BidScalarWhereInput!]
+  updateMany: [BidUpdateManyWithWhereNestedInput!]
+}
+
+input BidUpdateManyWithWhereNestedInput {
+  where: BidScalarWhereInput!
+  data: BidUpdateManyDataInput!
+}
+
+input BidUpdateWithoutServiceDataInput {
+  author: UserUpdateOneRequiredInput
+  payment: Float
+  possibleDate: String
+}
+
+input BidUpdateWithWhereUniqueWithoutServiceInput {
+  where: BidWhereUniqueInput!
+  data: BidUpdateWithoutServiceDataInput!
+}
+
+input BidUpsertWithWhereUniqueWithoutServiceInput {
+  where: BidWhereUniqueInput!
+  update: BidUpdateWithoutServiceDataInput!
+  create: BidCreateWithoutServiceInput!
+}
+
+input BidWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  author: UserWhereInput
+  service: ServiceWhereInput
+  payment: Float
+  payment_not: Float
+  payment_in: [Float!]
+  payment_not_in: [Float!]
+  payment_lt: Float
+  payment_lte: Float
+  payment_gt: Float
+  payment_gte: Float
+  possibleDate: String
+  possibleDate_not: String
+  possibleDate_in: [String!]
+  possibleDate_not_in: [String!]
+  possibleDate_lt: String
+  possibleDate_lte: String
+  possibleDate_gt: String
+  possibleDate_gte: String
+  possibleDate_contains: String
+  possibleDate_not_contains: String
+  possibleDate_starts_with: String
+  possibleDate_not_starts_with: String
+  possibleDate_ends_with: String
+  possibleDate_not_ends_with: String
+  AND: [BidWhereInput!]
+  OR: [BidWhereInput!]
+  NOT: [BidWhereInput!]
+}
+
+input BidWhereUniqueInput {
+  id: ID
+}
+
+type Category {
+  id: ID!
+  name: String!
+  number: Int!
+}
+
+type CategoryConnection {
+  pageInfo: PageInfo!
+  edges: [CategoryEdge]!
+  aggregate: AggregateCategory!
+}
+
+input CategoryCreateInput {
+  name: String!
+  number: Int!
+}
+
+input CategoryCreateOneInput {
+  create: CategoryCreateInput
+  connect: CategoryWhereUniqueInput
+}
+
+type CategoryEdge {
+  node: Category!
+  cursor: String!
+}
+
+enum CategoryOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  number_ASC
+  number_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type CategoryPreviousValues {
+  id: ID!
+  name: String!
+  number: Int!
+}
+
+type CategorySubscriptionPayload {
+  mutation: MutationType!
+  node: Category
+  updatedFields: [String!]
+  previousValues: CategoryPreviousValues
+}
+
+input CategorySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CategoryWhereInput
+  AND: [CategorySubscriptionWhereInput!]
+  OR: [CategorySubscriptionWhereInput!]
+  NOT: [CategorySubscriptionWhereInput!]
+}
+
+input CategoryUpdateDataInput {
+  name: String
+  number: Int
+}
+
+input CategoryUpdateInput {
+  name: String
+  number: Int
+}
+
+input CategoryUpdateManyMutationInput {
+  name: String
+  number: Int
+}
+
+input CategoryUpdateOneRequiredInput {
+  create: CategoryCreateInput
+  update: CategoryUpdateDataInput
+  upsert: CategoryUpsertNestedInput
+  connect: CategoryWhereUniqueInput
+}
+
+input CategoryUpsertNestedInput {
+  update: CategoryUpdateDataInput!
+  create: CategoryCreateInput!
+}
+
+input CategoryWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  number: Int
+  number_not: Int
+  number_in: [Int!]
+  number_not_in: [Int!]
+  number_lt: Int
+  number_lte: Int
+  number_gt: Int
+  number_gte: Int
+  AND: [CategoryWhereInput!]
+  OR: [CategoryWhereInput!]
+  NOT: [CategoryWhereInput!]
+}
+
+input CategoryWhereUniqueInput {
+  id: ID
+}
+
+type Comment {
+  id: ID!
+  question: String!
+  answers: [String!]!
+  author: User!
+  service: Service!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type CommentConnection {
+  pageInfo: PageInfo!
+  edges: [CommentEdge]!
+  aggregate: AggregateComment!
+}
+
+input CommentCreateanswersInput {
+  set: [String!]
+}
+
+input CommentCreateInput {
+  question: String!
+  answers: CommentCreateanswersInput
+  author: UserCreateOneInput!
+  service: ServiceCreateOneWithoutCommentsInput!
+}
+
+input CommentCreateManyWithoutServiceInput {
+  create: [CommentCreateWithoutServiceInput!]
+  connect: [CommentWhereUniqueInput!]
+}
+
+input CommentCreateWithoutServiceInput {
+  question: String!
+  answers: CommentCreateanswersInput
+  author: UserCreateOneInput!
+}
+
+type CommentEdge {
+  node: Comment!
+  cursor: String!
+}
+
+enum CommentOrderByInput {
+  id_ASC
+  id_DESC
+  question_ASC
+  question_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type CommentPreviousValues {
+  id: ID!
+  question: String!
+  answers: [String!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input CommentScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  question: String
+  question_not: String
+  question_in: [String!]
+  question_not_in: [String!]
+  question_lt: String
+  question_lte: String
+  question_gt: String
+  question_gte: String
+  question_contains: String
+  question_not_contains: String
+  question_starts_with: String
+  question_not_starts_with: String
+  question_ends_with: String
+  question_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [CommentScalarWhereInput!]
+  OR: [CommentScalarWhereInput!]
+  NOT: [CommentScalarWhereInput!]
+}
+
+type CommentSubscriptionPayload {
+  mutation: MutationType!
+  node: Comment
+  updatedFields: [String!]
+  previousValues: CommentPreviousValues
+}
+
+input CommentSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CommentWhereInput
+  AND: [CommentSubscriptionWhereInput!]
+  OR: [CommentSubscriptionWhereInput!]
+  NOT: [CommentSubscriptionWhereInput!]
+}
+
+input CommentUpdateanswersInput {
+  set: [String!]
+}
+
+input CommentUpdateInput {
+  question: String
+  answers: CommentUpdateanswersInput
+  author: UserUpdateOneRequiredInput
+  service: ServiceUpdateOneRequiredWithoutCommentsInput
+}
+
+input CommentUpdateManyDataInput {
+  question: String
+  answers: CommentUpdateanswersInput
+}
+
+input CommentUpdateManyMutationInput {
+  question: String
+  answers: CommentUpdateanswersInput
+}
+
+input CommentUpdateManyWithoutServiceInput {
+  create: [CommentCreateWithoutServiceInput!]
+  delete: [CommentWhereUniqueInput!]
+  connect: [CommentWhereUniqueInput!]
+  disconnect: [CommentWhereUniqueInput!]
+  update: [CommentUpdateWithWhereUniqueWithoutServiceInput!]
+  upsert: [CommentUpsertWithWhereUniqueWithoutServiceInput!]
+  deleteMany: [CommentScalarWhereInput!]
+  updateMany: [CommentUpdateManyWithWhereNestedInput!]
+}
+
+input CommentUpdateManyWithWhereNestedInput {
+  where: CommentScalarWhereInput!
+  data: CommentUpdateManyDataInput!
+}
+
+input CommentUpdateWithoutServiceDataInput {
+  question: String
+  answers: CommentUpdateanswersInput
+  author: UserUpdateOneRequiredInput
+}
+
+input CommentUpdateWithWhereUniqueWithoutServiceInput {
+  where: CommentWhereUniqueInput!
+  data: CommentUpdateWithoutServiceDataInput!
+}
+
+input CommentUpsertWithWhereUniqueWithoutServiceInput {
+  where: CommentWhereUniqueInput!
+  update: CommentUpdateWithoutServiceDataInput!
+  create: CommentCreateWithoutServiceInput!
+}
+
+input CommentWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  question: String
+  question_not: String
+  question_in: [String!]
+  question_not_in: [String!]
+  question_lt: String
+  question_lte: String
+  question_gt: String
+  question_gte: String
+  question_contains: String
+  question_not_contains: String
+  question_starts_with: String
+  question_not_starts_with: String
+  question_ends_with: String
+  question_not_ends_with: String
+  author: UserWhereInput
+  service: ServiceWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [CommentWhereInput!]
+  OR: [CommentWhereInput!]
+  NOT: [CommentWhereInput!]
+}
+
+input CommentWhereUniqueInput {
+  id: ID
+}
+
+scalar DateTime
+
+scalar Long
+
+type Mutation {
+  createAddress(data: AddressCreateInput!): Address!
+  updateAddress(data: AddressUpdateInput!, where: AddressWhereUniqueInput!): Address
+  updateManyAddresses(data: AddressUpdateManyMutationInput!, where: AddressWhereInput): BatchPayload!
+  upsertAddress(where: AddressWhereUniqueInput!, create: AddressCreateInput!, update: AddressUpdateInput!): Address!
+  deleteAddress(where: AddressWhereUniqueInput!): Address
+  deleteManyAddresses(where: AddressWhereInput): BatchPayload!
+  createBid(data: BidCreateInput!): Bid!
+  updateBid(data: BidUpdateInput!, where: BidWhereUniqueInput!): Bid
+  updateManyBids(data: BidUpdateManyMutationInput!, where: BidWhereInput): BatchPayload!
+  upsertBid(where: BidWhereUniqueInput!, create: BidCreateInput!, update: BidUpdateInput!): Bid!
+  deleteBid(where: BidWhereUniqueInput!): Bid
+  deleteManyBids(where: BidWhereInput): BatchPayload!
+  createCategory(data: CategoryCreateInput!): Category!
+  updateCategory(data: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category
+  updateManyCategories(data: CategoryUpdateManyMutationInput!, where: CategoryWhereInput): BatchPayload!
+  upsertCategory(where: CategoryWhereUniqueInput!, create: CategoryCreateInput!, update: CategoryUpdateInput!): Category!
+  deleteCategory(where: CategoryWhereUniqueInput!): Category
+  deleteManyCategories(where: CategoryWhereInput): BatchPayload!
+  createComment(data: CommentCreateInput!): Comment!
+  updateComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment
+  updateManyComments(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): BatchPayload!
+  upsertComment(where: CommentWhereUniqueInput!, create: CommentCreateInput!, update: CommentUpdateInput!): Comment!
+  deleteComment(where: CommentWhereUniqueInput!): Comment
+  deleteManyComments(where: CommentWhereInput): BatchPayload!
+  createNotification(data: NotificationCreateInput!): Notification!
+  updateNotification(data: NotificationUpdateInput!, where: NotificationWhereUniqueInput!): Notification
+  updateManyNotifications(data: NotificationUpdateManyMutationInput!, where: NotificationWhereInput): BatchPayload!
+  upsertNotification(where: NotificationWhereUniqueInput!, create: NotificationCreateInput!, update: NotificationUpdateInput!): Notification!
+  deleteNotification(where: NotificationWhereUniqueInput!): Notification
+  deleteManyNotifications(where: NotificationWhereInput): BatchPayload!
+  createProvince(data: ProvinceCreateInput!): Province!
+  updateProvince(data: ProvinceUpdateInput!, where: ProvinceWhereUniqueInput!): Province
+  updateManyProvinces(data: ProvinceUpdateManyMutationInput!, where: ProvinceWhereInput): BatchPayload!
+  upsertProvince(where: ProvinceWhereUniqueInput!, create: ProvinceCreateInput!, update: ProvinceUpdateInput!): Province!
+  deleteProvince(where: ProvinceWhereUniqueInput!): Province
+  deleteManyProvinces(where: ProvinceWhereInput): BatchPayload!
+  createService(data: ServiceCreateInput!): Service!
+  updateService(data: ServiceUpdateInput!, where: ServiceWhereUniqueInput!): Service
+  updateManyServices(data: ServiceUpdateManyMutationInput!, where: ServiceWhereInput): BatchPayload!
+  upsertService(where: ServiceWhereUniqueInput!, create: ServiceCreateInput!, update: ServiceUpdateInput!): Service!
+  deleteService(where: ServiceWhereUniqueInput!): Service
+  deleteManyServices(where: ServiceWhereInput): BatchPayload!
+  createToken(data: TokenCreateInput!): Token!
+  updateManyTokens(data: TokenUpdateManyMutationInput!, where: TokenWhereInput): BatchPayload!
+  deleteManyTokens(where: TokenWhereInput): BatchPayload!
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type Notification {
+  id: ID!
+  type: NotificationType!
+  to: User!
+  message: String!
+  label: String!
+  service: Service!
+  createdAt: DateTime!
+  viewedAt: DateTime
+}
+
+type NotificationConnection {
+  pageInfo: PageInfo!
+  edges: [NotificationEdge]!
+  aggregate: AggregateNotification!
+}
+
+input NotificationCreateInput {
+  type: NotificationType!
+  to: UserCreateOneInput!
+  message: String!
+  label: String!
+  service: ServiceCreateOneInput!
+  viewedAt: DateTime
+}
+
+type NotificationEdge {
+  node: Notification!
+  cursor: String!
+}
+
+enum NotificationOrderByInput {
+  id_ASC
+  id_DESC
+  type_ASC
+  type_DESC
+  message_ASC
+  message_DESC
+  label_ASC
+  label_DESC
+  createdAt_ASC
+  createdAt_DESC
+  viewedAt_ASC
+  viewedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type NotificationPreviousValues {
+  id: ID!
+  type: NotificationType!
+  message: String!
+  label: String!
+  createdAt: DateTime!
+  viewedAt: DateTime
+}
+
+type NotificationSubscriptionPayload {
+  mutation: MutationType!
+  node: Notification
+  updatedFields: [String!]
+  previousValues: NotificationPreviousValues
+}
+
+input NotificationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: NotificationWhereInput
+  AND: [NotificationSubscriptionWhereInput!]
+  OR: [NotificationSubscriptionWhereInput!]
+  NOT: [NotificationSubscriptionWhereInput!]
+}
+
+enum NotificationType {
+  BID
+  COMMENT
+}
+
+input NotificationUpdateInput {
+  type: NotificationType
+  to: UserUpdateOneRequiredInput
+  message: String
+  label: String
+  service: ServiceUpdateOneRequiredInput
+  viewedAt: DateTime
+}
+
+input NotificationUpdateManyMutationInput {
+  type: NotificationType
+  message: String
+  label: String
+  viewedAt: DateTime
+}
+
+input NotificationWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  type: NotificationType
+  type_not: NotificationType
+  type_in: [NotificationType!]
+  type_not_in: [NotificationType!]
+  to: UserWhereInput
+  message: String
+  message_not: String
+  message_in: [String!]
+  message_not_in: [String!]
+  message_lt: String
+  message_lte: String
+  message_gt: String
+  message_gte: String
+  message_contains: String
+  message_not_contains: String
+  message_starts_with: String
+  message_not_starts_with: String
+  message_ends_with: String
+  message_not_ends_with: String
+  label: String
+  label_not: String
+  label_in: [String!]
+  label_not_in: [String!]
+  label_lt: String
+  label_lte: String
+  label_gt: String
+  label_gte: String
+  label_contains: String
+  label_not_contains: String
+  label_starts_with: String
+  label_not_starts_with: String
+  label_ends_with: String
+  label_not_ends_with: String
+  service: ServiceWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  viewedAt: DateTime
+  viewedAt_not: DateTime
+  viewedAt_in: [DateTime!]
+  viewedAt_not_in: [DateTime!]
+  viewedAt_lt: DateTime
+  viewedAt_lte: DateTime
+  viewedAt_gt: DateTime
+  viewedAt_gte: DateTime
+  AND: [NotificationWhereInput!]
+  OR: [NotificationWhereInput!]
+  NOT: [NotificationWhereInput!]
+}
+
+input NotificationWhereUniqueInput {
+  id: ID
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+enum Permission {
+  ADMIN
+  USER
+  SERVICECREATE
+  SERVICEUPDATE
+  SERVICEDELETE
+  PERMISSIONUPDATE
+}
+
+type Province {
+  id: ID!
+  name: String!
+  abbr: String!
+}
+
+type ProvinceConnection {
+  pageInfo: PageInfo!
+  edges: [ProvinceEdge]!
+  aggregate: AggregateProvince!
+}
+
+input ProvinceCreateInput {
+  name: String!
+  abbr: String!
+}
+
+input ProvinceCreateOneInput {
+  create: ProvinceCreateInput
+  connect: ProvinceWhereUniqueInput
+}
+
+type ProvinceEdge {
+  node: Province!
+  cursor: String!
+}
+
+enum ProvinceOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  abbr_ASC
+  abbr_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ProvincePreviousValues {
+  id: ID!
+  name: String!
+  abbr: String!
+}
+
+type ProvinceSubscriptionPayload {
+  mutation: MutationType!
+  node: Province
+  updatedFields: [String!]
+  previousValues: ProvincePreviousValues
+}
+
+input ProvinceSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ProvinceWhereInput
+  AND: [ProvinceSubscriptionWhereInput!]
+  OR: [ProvinceSubscriptionWhereInput!]
+  NOT: [ProvinceSubscriptionWhereInput!]
+}
+
+input ProvinceUpdateDataInput {
+  name: String
+  abbr: String
+}
+
+input ProvinceUpdateInput {
+  name: String
+  abbr: String
+}
+
+input ProvinceUpdateManyMutationInput {
+  name: String
+  abbr: String
+}
+
+input ProvinceUpdateOneRequiredInput {
+  create: ProvinceCreateInput
+  update: ProvinceUpdateDataInput
+  upsert: ProvinceUpsertNestedInput
+  connect: ProvinceWhereUniqueInput
+}
+
+input ProvinceUpsertNestedInput {
+  update: ProvinceUpdateDataInput!
+  create: ProvinceCreateInput!
+}
+
+input ProvinceWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  abbr: String
+  abbr_not: String
+  abbr_in: [String!]
+  abbr_not_in: [String!]
+  abbr_lt: String
+  abbr_lte: String
+  abbr_gt: String
+  abbr_gte: String
+  abbr_contains: String
+  abbr_not_contains: String
+  abbr_starts_with: String
+  abbr_not_starts_with: String
+  abbr_ends_with: String
+  abbr_not_ends_with: String
+  AND: [ProvinceWhereInput!]
+  OR: [ProvinceWhereInput!]
+  NOT: [ProvinceWhereInput!]
+}
+
+input ProvinceWhereUniqueInput {
+  id: ID
+}
+
+type Query {
+  address(where: AddressWhereUniqueInput!): Address
+  addresses(where: AddressWhereInput, orderBy: AddressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Address]!
+  addressesConnection(where: AddressWhereInput, orderBy: AddressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AddressConnection!
+  bid(where: BidWhereUniqueInput!): Bid
+  bids(where: BidWhereInput, orderBy: BidOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Bid]!
+  bidsConnection(where: BidWhereInput, orderBy: BidOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BidConnection!
+  category(where: CategoryWhereUniqueInput!): Category
+  categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category]!
+  categoriesConnection(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CategoryConnection!
+  comment(where: CommentWhereUniqueInput!): Comment
+  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
+  commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
+  notification(where: NotificationWhereUniqueInput!): Notification
+  notifications(where: NotificationWhereInput, orderBy: NotificationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Notification]!
+  notificationsConnection(where: NotificationWhereInput, orderBy: NotificationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NotificationConnection!
+  province(where: ProvinceWhereUniqueInput!): Province
+  provinces(where: ProvinceWhereInput, orderBy: ProvinceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Province]!
+  provincesConnection(where: ProvinceWhereInput, orderBy: ProvinceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProvinceConnection!
+  service(where: ServiceWhereUniqueInput!): Service
+  services(where: ServiceWhereInput, orderBy: ServiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Service]!
+  servicesConnection(where: ServiceWhereInput, orderBy: ServiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ServiceConnection!
+  tokens(where: TokenWhereInput, orderBy: TokenOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Token]!
+  tokensConnection(where: TokenWhereInput, orderBy: TokenOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TokenConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  node(id: ID!): Node
+}
+
+type Service {
+  id: ID!
+  title: String!
+  description: String!
+  maxPayment: Float!
+  category: Category!
+  images: [String!]!
+  thumbnail: String
+  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
+  author: User!
+  bids(where: BidWhereInput, orderBy: BidOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Bid!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ServiceConnection {
+  pageInfo: PageInfo!
+  edges: [ServiceEdge]!
+  aggregate: AggregateService!
+}
+
+input ServiceCreateimagesInput {
+  set: [String!]
+}
+
+input ServiceCreateInput {
+  title: String!
+  description: String!
+  maxPayment: Float!
+  category: CategoryCreateOneInput!
+  images: ServiceCreateimagesInput
+  thumbnail: String
+  comments: CommentCreateManyWithoutServiceInput
+  author: UserCreateOneInput!
+  bids: BidCreateManyWithoutServiceInput
+}
+
+input ServiceCreateOneInput {
+  create: ServiceCreateInput
+  connect: ServiceWhereUniqueInput
+}
+
+input ServiceCreateOneWithoutBidsInput {
+  create: ServiceCreateWithoutBidsInput
+  connect: ServiceWhereUniqueInput
+}
+
+input ServiceCreateOneWithoutCommentsInput {
+  create: ServiceCreateWithoutCommentsInput
+  connect: ServiceWhereUniqueInput
+}
+
+input ServiceCreateWithoutBidsInput {
+  title: String!
+  description: String!
+  maxPayment: Float!
+  category: CategoryCreateOneInput!
+  images: ServiceCreateimagesInput
+  thumbnail: String
+  comments: CommentCreateManyWithoutServiceInput
+  author: UserCreateOneInput!
+}
+
+input ServiceCreateWithoutCommentsInput {
+  title: String!
+  description: String!
+  maxPayment: Float!
+  category: CategoryCreateOneInput!
+  images: ServiceCreateimagesInput
+  thumbnail: String
+  author: UserCreateOneInput!
+  bids: BidCreateManyWithoutServiceInput
+}
+
+type ServiceEdge {
+  node: Service!
+  cursor: String!
+}
+
+enum ServiceOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  description_ASC
+  description_DESC
+  maxPayment_ASC
+  maxPayment_DESC
+  thumbnail_ASC
+  thumbnail_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ServicePreviousValues {
+  id: ID!
+  title: String!
+  description: String!
+  maxPayment: Float!
+  images: [String!]!
+  thumbnail: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ServiceSubscriptionPayload {
+  mutation: MutationType!
+  node: Service
+  updatedFields: [String!]
+  previousValues: ServicePreviousValues
+}
+
+input ServiceSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ServiceWhereInput
+  AND: [ServiceSubscriptionWhereInput!]
+  OR: [ServiceSubscriptionWhereInput!]
+  NOT: [ServiceSubscriptionWhereInput!]
+}
+
+input ServiceUpdateDataInput {
+  title: String
+  description: String
+  maxPayment: Float
+  category: CategoryUpdateOneRequiredInput
+  images: ServiceUpdateimagesInput
+  thumbnail: String
+  comments: CommentUpdateManyWithoutServiceInput
+  author: UserUpdateOneRequiredInput
+  bids: BidUpdateManyWithoutServiceInput
+}
+
+input ServiceUpdateimagesInput {
+  set: [String!]
+}
+
+input ServiceUpdateInput {
+  title: String
+  description: String
+  maxPayment: Float
+  category: CategoryUpdateOneRequiredInput
+  images: ServiceUpdateimagesInput
+  thumbnail: String
+  comments: CommentUpdateManyWithoutServiceInput
+  author: UserUpdateOneRequiredInput
+  bids: BidUpdateManyWithoutServiceInput
+}
+
+input ServiceUpdateManyMutationInput {
+  title: String
+  description: String
+  maxPayment: Float
+  images: ServiceUpdateimagesInput
+  thumbnail: String
+}
+
+input ServiceUpdateOneRequiredInput {
+  create: ServiceCreateInput
+  update: ServiceUpdateDataInput
+  upsert: ServiceUpsertNestedInput
+  connect: ServiceWhereUniqueInput
+}
+
+input ServiceUpdateOneRequiredWithoutBidsInput {
+  create: ServiceCreateWithoutBidsInput
+  update: ServiceUpdateWithoutBidsDataInput
+  upsert: ServiceUpsertWithoutBidsInput
+  connect: ServiceWhereUniqueInput
+}
+
+input ServiceUpdateOneRequiredWithoutCommentsInput {
+  create: ServiceCreateWithoutCommentsInput
+  update: ServiceUpdateWithoutCommentsDataInput
+  upsert: ServiceUpsertWithoutCommentsInput
+  connect: ServiceWhereUniqueInput
+}
+
+input ServiceUpdateWithoutBidsDataInput {
+  title: String
+  description: String
+  maxPayment: Float
+  category: CategoryUpdateOneRequiredInput
+  images: ServiceUpdateimagesInput
+  thumbnail: String
+  comments: CommentUpdateManyWithoutServiceInput
+  author: UserUpdateOneRequiredInput
+}
+
+input ServiceUpdateWithoutCommentsDataInput {
+  title: String
+  description: String
+  maxPayment: Float
+  category: CategoryUpdateOneRequiredInput
+  images: ServiceUpdateimagesInput
+  thumbnail: String
+  author: UserUpdateOneRequiredInput
+  bids: BidUpdateManyWithoutServiceInput
+}
+
+input ServiceUpsertNestedInput {
+  update: ServiceUpdateDataInput!
+  create: ServiceCreateInput!
+}
+
+input ServiceUpsertWithoutBidsInput {
+  update: ServiceUpdateWithoutBidsDataInput!
+  create: ServiceCreateWithoutBidsInput!
+}
+
+input ServiceUpsertWithoutCommentsInput {
+  update: ServiceUpdateWithoutCommentsDataInput!
+  create: ServiceCreateWithoutCommentsInput!
+}
+
+input ServiceWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  maxPayment: Float
+  maxPayment_not: Float
+  maxPayment_in: [Float!]
+  maxPayment_not_in: [Float!]
+  maxPayment_lt: Float
+  maxPayment_lte: Float
+  maxPayment_gt: Float
+  maxPayment_gte: Float
+  category: CategoryWhereInput
+  thumbnail: String
+  thumbnail_not: String
+  thumbnail_in: [String!]
+  thumbnail_not_in: [String!]
+  thumbnail_lt: String
+  thumbnail_lte: String
+  thumbnail_gt: String
+  thumbnail_gte: String
+  thumbnail_contains: String
+  thumbnail_not_contains: String
+  thumbnail_starts_with: String
+  thumbnail_not_starts_with: String
+  thumbnail_ends_with: String
+  thumbnail_not_ends_with: String
+  comments_every: CommentWhereInput
+  comments_some: CommentWhereInput
+  comments_none: CommentWhereInput
+  author: UserWhereInput
+  bids_every: BidWhereInput
+  bids_some: BidWhereInput
+  bids_none: BidWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ServiceWhereInput!]
+  OR: [ServiceWhereInput!]
+  NOT: [ServiceWhereInput!]
+}
+
+input ServiceWhereUniqueInput {
+  id: ID
+}
+
+type Subscription {
+  address(where: AddressSubscriptionWhereInput): AddressSubscriptionPayload
+  bid(where: BidSubscriptionWhereInput): BidSubscriptionPayload
+  category(where: CategorySubscriptionWhereInput): CategorySubscriptionPayload
+  comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
+  notification(where: NotificationSubscriptionWhereInput): NotificationSubscriptionPayload
+  province(where: ProvinceSubscriptionWhereInput): ProvinceSubscriptionPayload
+  service(where: ServiceSubscriptionWhereInput): ServiceSubscriptionPayload
+  token(where: TokenSubscriptionWhereInput): TokenSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type Token {
+  token: String!
+  type: String!
+}
+
+type TokenConnection {
+  pageInfo: PageInfo!
+  edges: [TokenEdge]!
+  aggregate: AggregateToken!
+}
+
+input TokenCreateInput {
+  token: String!
+  type: String!
+}
+
+input TokenCreateManyInput {
+  create: [TokenCreateInput!]
+}
+
+type TokenEdge {
+  node: Token!
+  cursor: String!
+}
+
+enum TokenOrderByInput {
+  token_ASC
+  token_DESC
+  type_ASC
+  type_DESC
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type TokenPreviousValues {
+  token: String!
+  type: String!
+}
+
+input TokenScalarWhereInput {
+  token: String
+  token_not: String
+  token_in: [String!]
+  token_not_in: [String!]
+  token_lt: String
+  token_lte: String
+  token_gt: String
+  token_gte: String
+  token_contains: String
+  token_not_contains: String
+  token_starts_with: String
+  token_not_starts_with: String
+  token_ends_with: String
+  token_not_ends_with: String
+  type: String
+  type_not: String
+  type_in: [String!]
+  type_not_in: [String!]
+  type_lt: String
+  type_lte: String
+  type_gt: String
+  type_gte: String
+  type_contains: String
+  type_not_contains: String
+  type_starts_with: String
+  type_not_starts_with: String
+  type_ends_with: String
+  type_not_ends_with: String
+  AND: [TokenScalarWhereInput!]
+  OR: [TokenScalarWhereInput!]
+  NOT: [TokenScalarWhereInput!]
+}
+
+type TokenSubscriptionPayload {
+  mutation: MutationType!
+  node: Token
+  updatedFields: [String!]
+  previousValues: TokenPreviousValues
+}
+
+input TokenSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TokenWhereInput
+  AND: [TokenSubscriptionWhereInput!]
+  OR: [TokenSubscriptionWhereInput!]
+  NOT: [TokenSubscriptionWhereInput!]
+}
+
+input TokenUpdateManyDataInput {
+  token: String
+  type: String
+}
+
+input TokenUpdateManyInput {
+  create: [TokenCreateInput!]
+  deleteMany: [TokenScalarWhereInput!]
+  updateMany: [TokenUpdateManyWithWhereNestedInput!]
+}
+
+input TokenUpdateManyMutationInput {
+  token: String
+  type: String
+}
+
+input TokenUpdateManyWithWhereNestedInput {
+  where: TokenScalarWhereInput!
+  data: TokenUpdateManyDataInput!
+}
+
+input TokenWhereInput {
+  token: String
+  token_not: String
+  token_in: [String!]
+  token_not_in: [String!]
+  token_lt: String
+  token_lte: String
+  token_gt: String
+  token_gte: String
+  token_contains: String
+  token_not_contains: String
+  token_starts_with: String
+  token_not_starts_with: String
+  token_ends_with: String
+  token_not_ends_with: String
+  type: String
+  type_not: String
+  type_in: [String!]
+  type_not_in: [String!]
+  type_lt: String
+  type_lte: String
+  type_gt: String
+  type_gte: String
+  type_contains: String
+  type_not_contains: String
+  type_starts_with: String
+  type_not_starts_with: String
+  type_ends_with: String
+  type_not_ends_with: String
+  AND: [TokenWhereInput!]
+  OR: [TokenWhereInput!]
+  NOT: [TokenWhereInput!]
+}
+
+type User {
+  id: ID!
+  fname: String!
+  lname: String!
+  address: Address!
+  email: String!
+  password: String!
+  token(where: TokenWhereInput, orderBy: TokenOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Token!]
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: [Permission!]!
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  fname: String!
+  lname: String!
+  address: AddressCreateOneInput!
+  email: String!
+  password: String!
+  token: TokenCreateManyInput
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserCreatepermissionsInput
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreatepermissionsInput {
+  set: [Permission!]
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  fname_ASC
+  fname_DESC
+  lname_ASC
+  lname_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+  resetToken_ASC
+  resetToken_DESC
+  resetTokenExpiry_ASC
+  resetTokenExpiry_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  fname: String!
+  lname: String!
+  email: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: [Permission!]!
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+  AND: [UserSubscriptionWhereInput!]
+  OR: [UserSubscriptionWhereInput!]
+  NOT: [UserSubscriptionWhereInput!]
+}
+
+input UserUpdateDataInput {
+  fname: String
+  lname: String
+  address: AddressUpdateOneRequiredInput
+  email: String
+  password: String
+  token: TokenUpdateManyInput
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
+}
+
+input UserUpdateInput {
+  fname: String
+  lname: String
+  address: AddressUpdateOneRequiredInput
+  email: String
+  password: String
+  token: TokenUpdateManyInput
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
+}
+
+input UserUpdateManyMutationInput {
+  fname: String
+  lname: String
+  email: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
+}
+
+input UserUpdateOneRequiredInput {
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdatepermissionsInput {
+  set: [Permission!]
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
+}
+
+input UserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  fname: String
+  fname_not: String
+  fname_in: [String!]
+  fname_not_in: [String!]
+  fname_lt: String
+  fname_lte: String
+  fname_gt: String
+  fname_gte: String
+  fname_contains: String
+  fname_not_contains: String
+  fname_starts_with: String
+  fname_not_starts_with: String
+  fname_ends_with: String
+  fname_not_ends_with: String
+  lname: String
+  lname_not: String
+  lname_in: [String!]
+  lname_not_in: [String!]
+  lname_lt: String
+  lname_lte: String
+  lname_gt: String
+  lname_gte: String
+  lname_contains: String
+  lname_not_contains: String
+  lname_starts_with: String
+  lname_not_starts_with: String
+  lname_ends_with: String
+  lname_not_ends_with: String
+  address: AddressWhereInput
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  token_every: TokenWhereInput
+  token_some: TokenWhereInput
+  token_none: TokenWhereInput
+  resetToken: String
+  resetToken_not: String
+  resetToken_in: [String!]
+  resetToken_not_in: [String!]
+  resetToken_lt: String
+  resetToken_lte: String
+  resetToken_gt: String
+  resetToken_gte: String
+  resetToken_contains: String
+  resetToken_not_contains: String
+  resetToken_starts_with: String
+  resetToken_not_starts_with: String
+  resetToken_ends_with: String
+  resetToken_not_ends_with: String
+  resetTokenExpiry: Float
+  resetTokenExpiry_not: Float
+  resetTokenExpiry_in: [Float!]
+  resetTokenExpiry_not_in: [Float!]
+  resetTokenExpiry_lt: Float
+  resetTokenExpiry_lte: Float
+  resetTokenExpiry_gt: Float
+  resetTokenExpiry_gte: Float
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  email: String
+  resetToken: String
+}

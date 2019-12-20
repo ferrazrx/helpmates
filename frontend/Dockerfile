@@ -1,0 +1,14 @@
+# SELECT BASE IMAGE WITH NODE NPM
+FROM node:alpine
+
+# CREATE WORK DIRECTORY
+WORKDIR /usr/app
+
+# COPY DEFAULT FILES AND INSTALL DEPENDENCIES
+COPY ./package.json ./
+RUN npm i
+COPY . .
+RUN npm run build
+
+# CREAT DEFAULT COMMAND
+CMD ["npm", "run", "start"] 

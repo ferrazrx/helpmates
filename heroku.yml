@@ -1,0 +1,11 @@
+build:
+  docker:
+    web: frontend/Dockerfile
+    back: backend/Dockerfile
+run:
+  web:
+    command: 
+      - npm run start -p $PORT
+  back: 
+    command:
+      - npm run prod -p 4000

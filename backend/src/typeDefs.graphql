@@ -1,0 +1,123 @@
+#import * from '../dist/generated/prisma.graphql'
+
+type Mutation {
+    createUser(data: UserCreateInput!): PrivateUser!
+    createService(data: ServiceCreateInput!): PublicService!
+    updateService(data: ServiceUpdateInput!, where: ServiceWhereUniqueInput!): PublicService!
+    deleteService(where: ServiceWhereUniqueInput!): PublicService!
+    signup(data: UserCreateInput!): PrivateUser!
+    signin(email: String!, password: String!): PrivateUser
+    signout: SuccessMessage 
+    requestReset(email: String!): SuccessMessage
+    resetPassword(resetToken: String!, password:String!, confirm:String!): PrivateUser
+    addComment(question: String!, service: ID!): Comment!
+    addBid(data: BidCreateInput!): Bid!
+    markNotificationViewed(id: ID!): Notification!
+}
+type Query {
+    # users: [PublicUser]!
+    services(where: ServiceWhereInput, orderBy: ServiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PublicService]!
+    categories: [Category]!
+    service(where: ServiceWhereUniqueInput!): PublicService!
+    servicesConnection(where: ServiceWhereInput, orderBy: ServiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ServiceConnection!
+    provinces: [Province]!
+    loggedUser: PrivateUser
+    canEditPost(where: ServiceWhereUniqueInput!): Boolean
+    canDeletePost(where: ServiceWhereUniqueInput!): Boolean
+    myServices(orderBy: ServiceOrderByInput): [PrivateService]!
+    notifications(where: NotificationWhereInput, orderBy: NotificationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Notification]
+}
+type Subscription{
+    notificationAdded: Notification
+}
+
+type PrivateService {
+  id: ID!
+  title: String!
+  description: String!
+  maxPayment: Float!
+  category: Category!
+  images: [String!]!
+  thumbnail: String
+  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
+  author: PublicUser!
+  bids(where: BidWhereInput, orderBy: BidOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Bid!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Notification {
+  id: ID!
+  type: NotificationType!
+  label: String!
+  message: String!
+  service: Service!
+  createdAt: DateTime!
+  viewedAt: DateTime
+  link: ID!
+}
+
+type Comment {
+  id: ID!
+  question: String!
+  answers: [String!]!
+  author: PublicUser!
+  service: Service!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type PublicService {
+  id: ID!
+  title: String!
+  description: String!
+  maxPayment: Float!
+  category: Category!
+  images: [String!]!
+  thumbnail: String
+  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
+  author: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type PrivateUser{
+  id: ID!
+  fname: String!
+  lname: String!
+  address: Address!
+  email: String!
+  permissions: [Permission!]!
+}
+type PublicUser{
+  fname: String!
+  lname: String!
+}
+input ServiceCreateInput {
+    title: String!
+    description: String!
+    maxPayment: Float!
+    images: [Upload]!
+    category: CategoryCreateOneInput!
+}
+input ServiceUpdateInput {
+    title:String
+    description:String
+    maxPayment: Float
+    images:[Upload]
+    category: ID
+}
+
+input BidCreateInput {
+  service: ID!
+  payment: Float!
+  possibleDate: DateTime!
+}
+
+type SuccessMessage{
+    message: String
+}
+
+
+scalar Upload
+
