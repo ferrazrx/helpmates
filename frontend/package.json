@@ -38,7 +38,7 @@
     "react-transition-group": "^2.5.1",
     "styled-components": "^4.1.2",
     "subscriptions-transport-ws": "^0.9.15",
-    "validator": "^10.9.0",
+    "validator": "^13.7.0",
     "websocket": "^1.0.28",
     "ws": "^6.1.2"
   },
